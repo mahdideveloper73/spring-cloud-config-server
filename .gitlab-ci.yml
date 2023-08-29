@@ -1,7 +1,5 @@
 stages:
     - build
-
-
 build:
   stage: build
   #image: registry.parvaz.infra/docker/docker:stable
