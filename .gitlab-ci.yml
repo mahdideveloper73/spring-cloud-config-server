@@ -1,5 +1,6 @@
 stages:
     - build
+    - deploy
 build:
   stage: build
   #image: registry.parvaz.infra/docker/docker:stable
@@ -11,3 +12,23 @@ build:
     - docker build -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG} -f ./Dockerfile .
     - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}
   when: manual
+
+
+
+deploy:
+  stage:  deploy
+  image: registry.parvaz.infra/docker/helm:latest
+  before_script:
+    - chmod 400 ${KUBECONFIG}
+  script:
+    - helm upgrade --install
+      --create-namespace
+      --namespace sigma
+      --kubeconfig ${KUBECONFIG}
+      --set registry.credentials=${REGISTRY_CRED}
+      apigateway
+      .chart
+  when: manual
+  only:
+    refs:
+      - Deploy
