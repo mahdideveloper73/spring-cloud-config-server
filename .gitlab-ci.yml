@@ -3,7 +3,7 @@ stages:
 build:
   stage: build
   #image: registry.parvaz.infra/docker/docker:stable
-  image: nexus.parvaz.infra:4040/library/docker:stable
+  image: nexus.parvaz.infra:4040/maven
   script:
     - echo  ${CI_REGISTRY_IMAGE}
     - echo   ${CI_COMMIT_REF_SLUG}
