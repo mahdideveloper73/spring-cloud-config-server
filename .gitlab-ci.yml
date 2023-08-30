@@ -23,10 +23,10 @@ deploy:
   script:
     - helm upgrade --install
       --create-namespace
-      --namespace sigma
+      --namespace rayten
       --kubeconfig ${KUBECONFIG}
       --set registry.credentials=${REGISTRY_CRED}
-      apigateway
+      spring-cloud-config
       .chart
   when: manual
   only:
