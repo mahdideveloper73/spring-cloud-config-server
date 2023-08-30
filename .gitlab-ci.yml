@@ -3,12 +3,11 @@ stages:
 build:
   stage: build
   #image: registry.parvaz.infra/docker/docker:stable
-  image: nexus.parvaz.infra:4040/library/maven
+  image: nexus.parvaz.infra:4040/library/docker:stable
   script:
     - echo  ${CI_REGISTRY_IMAGE}
     - echo   ${CI_COMMIT_REF_SLUG}
     - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
-    - mvn package -U
     - docker build -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG} -f ./Dockerfile .
     - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}
   when: manual
