@@ -5,12 +5,12 @@ LABEL MAINTAINER="sgwebfreelancer@gmail.com"
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 
-RUN mkdir /root/.m2
+RUN    mkdir /root/.m2
 COPY ./settings.xml /root/.m2
 # Compile and package the application to an executable JAR
 RUN mvn package
 
-# For Java 11,
+# For Java 17,
 FROM eclipse-temurin:17-jdk-alpine
 
 ARG JAR_FILE=spring-cloud-config-server-0.0.1-SNAPSHOT.jar

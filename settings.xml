@@ -7,7 +7,8 @@
         <mirror> <!--Send all requests to the public group -->
             <id>nexus</id>
             <mirrorOf>*</mirrorOf>
-            <url>http://nexus.parvaz.infra/repository/maven-public/</url>
+<!--            <url>http://nexus.parvaz.infra/repository/maven-public/</url>-->
+            <url>http://81.28.61.108/repository/maven-public/</url>
         </mirror>
     </mirrors>
     <activeProfiles>
